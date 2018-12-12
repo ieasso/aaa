@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--配置http请求相关：授权，说明：
+        auto-config：开启自动配置
+        use-expressions：开启使用SpEL表达式
+    -->
+    <!--<security:http auto-config="true" use-expressions="true">
+        &lt;!&ndash;配置权限拦截url规则，说明：
+               pattern：url匹配模式
+               access：可访问角色列表
+           &ndash;&gt;
+        &lt;!&ndash;系统管理模块，要求要管理员&ndash;&gt;
+        <security:intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
+        <security:intercept-url pattern="/role/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
+        <security:intercept-url pattern="/permission/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
+        <security:intercept-url pattern="/syslog/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
+
+        &lt;!&ndash;基础数据模块，普通用户和管理员都可以访问&ndash;&gt;
+        <security:intercept-url pattern="/product/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"></security:intercept-url>
+        <security:intercept-url pattern="/order/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"></security:intercept-url>
+
+        &lt;!&ndash;配置登录表单，说明：
+            login-page：登录页面
+            default-target-url：成功登录跳转地址
+            authentication-failure-url：登录失败跳转页面
+        &ndash;&gt;
+        <security:form-login login-page="/login.jsp"
+                             default-target-url="/index.jsp" authentication-failure-url="/failer.jsp"></security:form-login>
+
+        &lt;!&ndash;配置退出，说明：
+            logout-success-url：成功退出后跳转地址
+            invalidate-session：销毁session
+        &ndash;&gt;
+        <security:logout logout-success-url="/login.jsp" invalidate-session="true"></security:logout>
+
+        &lt;!&ndash;关闭伪造表单请求&ndash;&gt;
+        <security:csrf disabled="true"></security:csrf>
+
+        &lt;!&ndash;配置403禁止访问页面&ndash;&gt;
+        <security:access-denied-handler error-page="/403.jsp"></security:access-denied-handler>
+    </security:http>
+
+    &lt;!&ndash;配置用户信息相关：认证&ndash;&gt;
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userDetailService">
+            &lt;!&ndash;<security:user-service>
+                <security:user name="user" password="{noop}123456" authorities="ROLE_USER"></security:user>
+                <security:user name="admin" password="{noop}123456" authorities="ROLE_ADMIN"></security:user>
+            </security:user-service>&ndash;&gt;
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    &lt;!&ndash;配置自定义认证service&ndash;&gt;
+    <bean id="userDetailService" class="com.itheima.security.SsmUserDetailService"></bean>-->
+</beans>

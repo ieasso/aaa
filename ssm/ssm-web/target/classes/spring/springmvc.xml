@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--配置默认的servlet处理器，处理静态资源加载-->
+    <mvc:default-servlet-handler/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+
+        <!--配置登录拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/success"/>
+            <bean class="com.itheima.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
+    <!--配置包扫描controller-->
+    <context:component-scan base-package="com.itheima"/>
+
+    <!--注解驱动方式配置处理器映射器和处理器适配器-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <!-- 配置自定义转换器 -->
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.itheima.converter.DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置视图公共目录路径-->
+        <property name="prefix" value="/pages/"/>
+        <!--配置视图扩展名称-->
+        <property name="suffix" value=".jsp"/>
+
+    </bean>
+        <!--开启spring对象注解AOP的支持-->
+      <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+</beans>
